@@ -13,6 +13,8 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Doctor saveDoctor(Doctor doctor) {
+        if(doctorRepository.findByEmail(doctor.getEmail()) != null)
+            throw new RuntimeException("Doctor is already present");
         return doctorRepository.save(doctor);
     }
 
@@ -31,10 +33,12 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public String deleteDoctor(int id) {
-        Doctor prevDoctor = doctorRepository.findById(id).orElse(null);
-        if(prevDoctor == null)
-            throw new RuntimeException("Invalid doctor details!");
-        return null;
+    public String deleteDoctor(String email) {
+        Doctor doctor = doctorRepository.findByEmail(email);
+        if(doctor == null)
+            throw new RuntimeException("Invalid doctor details");
+        long id = doctor.getId();
+        doctorRepository.deleteById(id);
+        return "Doctor with email "+ email + " is deleted!";
     }
 }

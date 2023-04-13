@@ -7,6 +7,6 @@ public interface DoctorService {
     Doctor saveDoctor(Doctor doctor);
     Doctor getDoctorByEmail(String email);
     Doctor updateDoctor(Doctor doctor);
-    String deleteDoctor(int id);
+    String deleteDoctor(String email);
 
 }
