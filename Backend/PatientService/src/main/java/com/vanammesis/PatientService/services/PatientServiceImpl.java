@@ -1,16 +1,20 @@
-package com.vanammesis.PatientService.services;
+package com.vanammesis.patientservice.services;
 
-import com.vanammesis.PatientService.entities.Patients;
-import com.vanammesis.PatientService.repository.PatientRepository;
-import com.vanammesis.PatientService.responses.PatientResponse;
+import com.vanammesis.patientservice.entities.Patient;
+import com.vanammesis.patientservice.exceptions.ResourceNotFoundException;
+import com.vanammesis.patientservice.repository.PatientRepository;
+import com.vanammesis.patientservice.requests.PatientRequest;
+import com.vanammesis.patientservice.responses.PatientResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class PatientServiceImpl implements PatientService{
+@Service
+public class PatientServiceImpl implements PatientService {
 
     @Autowired
     private PatientRepository patientRepository;
@@ -18,27 +22,60 @@ public class PatientServiceImpl implements PatientService{
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @Override
     public PatientResponse createNewPatient(PatientResponse patientResponse) {
-        Patients patients = modelMapper.map(patientResponse, Patients.class);
+        patientResponse.setPatientPassword(passwordEncoder.encode(patientResponse.getPatientPassword()));
+        Patient patients = modelMapper.map(patientResponse, Patient.class);
         return modelMapper.map(patientRepository.save(patients), PatientResponse.class);
     }
 
     @Override
     public List<PatientResponse> getAllPatients() {
-       return modelMapper.map(patientRepository.findAll(), ArrayList.class);
+        return modelMapper.map(patientRepository.findAll(), ArrayList.class);
     }
 
     @Override
     public PatientResponse getPatientById(long patientId) {
-        return modelMapper.map(patientRepository.findById(patientId),PatientResponse.class);
+        Patient patient = patientRepository.findById(patientId).orElseThrow(
+                () -> {
+                    throw new ResourceNotFoundException("Patient with id does not exist.");
+                }
+        );
+        return modelMapper.map(patient, PatientResponse.class);
     }
 
     @Override
     public String deletePatientById(long patientId) {
-        patientRepository.deleteById(patientId);
-        Optional<Patients> byId = patientRepository.findById(patientId);
+        if(patientRepository.findById(patientId)== null){
+                throw new ResourceNotFoundException("Patient with given id does not exist.");
+        }
+        else{
+            patientRepository.deleteById(patientId);
+        }
 
-        return "Patient with id: " + patientId + "has been deleted.";
+      return "Patient with id: " + patientId + " has been deleted.";
     }
+
+    @Override
+    public PatientResponse getPatientByEmail(String email) {
+        Patient patientByPatientEmail = patientRepository.findPatientByPatientEmail(email);
+        if (patientByPatientEmail == null){
+            throw new ResourceNotFoundException("Patient with given email id does not exist.");
+        }
+        return modelMapper.map(patientByPatientEmail,PatientResponse.class);
+
+    }
+
+    @Override
+    public Iterable<Patient> saveAllPatients(List<Patient> patients) {
+        for(Patient patient: patients){
+            patient.setPatientPassword(passwordEncoder.encode(patient.getPatientPassword()));
+        }
+        return patientRepository.saveAll(patients);
+    }
+
+
 }

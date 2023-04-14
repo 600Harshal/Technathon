@@ -1,4 +1,4 @@
-package com.vanammesis.PatientService;
+package com.vanammesis.patientservice;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;

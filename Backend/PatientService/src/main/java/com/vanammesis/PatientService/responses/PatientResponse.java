@@ -1,4 +1,4 @@
-package com.vanammesis.PatientService.responses;
+package com.vanammesis.patientservice.responses;
 import lombok.*;
 
 @Setter
@@ -11,11 +11,12 @@ public class PatientResponse{
     private long patientId;
 
 
-    private int patientName;
 
-    private int patientEmail;
+    private String patientName;
 
-    private int patientPassword;
+    private String patientEmail;
+
+    private String patientPassword;
 
 
 }

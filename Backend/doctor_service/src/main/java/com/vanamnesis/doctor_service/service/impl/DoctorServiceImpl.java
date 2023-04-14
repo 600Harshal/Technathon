@@ -11,16 +11,24 @@ public class DoctorServiceImpl implements DoctorService {
     @Autowired
     private DoctorRepository doctorRepository;
 
+    @Autowired
+    private PasswordEncoderServiceImpl passwordEncoder;
+
     @Override
     public Doctor saveDoctor(Doctor doctor) {
         if(doctorRepository.findByEmail(doctor.getEmail()) != null)
             throw new RuntimeException("Doctor is already present");
+
+        doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
         return doctorRepository.save(doctor);
     }
 
     @Override
     public Doctor getDoctorByEmail(String email) {
-        return doctorRepository.findByEmail(email);
+        Doctor doctor = doctorRepository.findByEmail(email);
+        if(doctor == null)
+            throw new RuntimeException("Doctor is not present");
+        return doctor;
     }
 
     @Override
@@ -29,6 +37,7 @@ public class DoctorServiceImpl implements DoctorService {
         if(prevDoctor == null)
             throw new RuntimeException("Invalid doctor details!");
         doctor.setId(prevDoctor.getId());
+        doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
         return doctorRepository.save(doctor);
     }
 
