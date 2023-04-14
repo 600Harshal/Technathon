@@ -3,11 +3,15 @@ server:
 
 
 spring:
+  security:
+    user:
+      name: root
+      password: root
   application:
     name: PATIENT-SERVICE
   datasource:
     password: root
-    url: jdbc:postgresql://localhost:5432/TheatreService
+    url: jdbc:postgresql://localhost:5432/vanamnesis
     username: postgres
   jpa:
     open-in-view: true
@@ -19,3 +23,5 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+  main:
+    allow-circular-references: true

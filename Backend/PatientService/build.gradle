@@ -19,6 +19,19 @@ repositories {
 }
 
 dependencies {
+
+
+	// https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
+	implementation 'org.hibernate.orm:hibernate-core:6.1.7.Final'
+
+
+	// https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api
+	implementation 'jakarta.ws.rs:jakarta.ws.rs-api:2.1.6'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
+	implementation 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.modelmapper:modelmapper:2.3.8'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.0'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -27,6 +40,8 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	implementation 'javax.xml.bind:jaxb-api:2.3.1'
 }
 
 tasks.named('test') {
