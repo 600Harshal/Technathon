@@ -4,8 +4,6 @@ import com.vanammesis.patientservice.helpers.JwtUtil;
 import com.vanammesis.patientservice.requests.AuthenticationRequest;
 import com.vanammesis.patientservice.responses.AuthenticationResponse;
 import io.jsonwebtoken.JwtException;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
