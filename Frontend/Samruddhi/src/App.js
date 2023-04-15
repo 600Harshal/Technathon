@@ -4,15 +4,20 @@ import Consult from "./components/Consult";
 import NewConsultation from "./components/NewConsultation";
 import PatientDashboard from "./components/PatientDashboard";
 import DoctorList from "./components/DoctorList";
-import Header from "./components/Header";
-
+import LandingPage from "./components/LandingPage";
+import Login from "./components/Login";
+import DoctorSignUp from "./components/DoctorSignUp";
+import PatientSignUp from "./components/PatientSignUp";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-      <Header/>
         <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup/doctor" element={<DoctorSignUp />} />
+          <Route path="/signup/patient" element={<PatientSignUp />} />
           <Route path="/consult" element={<Consult />} />
           <Route path="/NewConsultation" element={<NewConsultation />} />
           <Route path="/PatientDashboard" element={<PatientDashboard />} />

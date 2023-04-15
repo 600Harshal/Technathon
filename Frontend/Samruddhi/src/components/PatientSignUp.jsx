@@ -9,10 +9,79 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useState } from "react";
+import { toast } from "react-toastify";
+
 
 const theme = createTheme();
 
-export default function Login() {
+export default function PatientSignUp() {
+  const [data, setData] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+  });
+
+  const [error, setError] = useState({
+    errors: {},
+    isError: false,
+  });
+
+  //handle change, data
+  const handleChange = (event, property) => {
+    // console.log("Name changed");
+    // console.log(event.target.value);
+
+    //Dynamic setting the values
+    setData({ ...data, [property]: event.target.value });
+  };
+
+  //resettong the form
+  const resetData = () => {
+    setData({
+      fullname: "",
+      email: "",
+      password: "",
+    });
+  };
+
+  //submit the form
+  const submitForm = (event) => {
+    event.preventDefault();
+
+    // if (error.isError) {
+    //   toast.error("Form data is invalid, correct all details then submit");
+    //   return;
+    // }
+
+    console.log(data);
+    //data validate
+
+
+    //call server api for sending dada
+    PatientSignUp(data)
+      .then((resp) => {
+        console.log(resp);
+        console.log("success log");
+        toast.success("User is registered successfully");
+        setData({
+          fullname: "",
+      email: "",
+      password: "",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("Error log");
+
+        //handle errors
+        setError({
+          errors: error,
+          isError: true,
+        });
+      });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -120,7 +189,7 @@ export default function Login() {
                   fontSize: "16px",
                 }}
               >
-                Login
+                SignUp
               </Button>
               <Grid container>
                 <Grid item xs></Grid>
