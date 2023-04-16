@@ -10,7 +10,7 @@ spring:
   application:
     name: PATIENT-SERVICE
   datasource:
-    password: root
+    password: 12345
     url: jdbc:postgresql://localhost:5432/vanamnesis
     username: postgres
   jpa:

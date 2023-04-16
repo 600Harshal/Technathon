@@ -19,12 +19,14 @@ spring:
         format_sql: true
     show-sql: true
 
-
-
-
 jwt:
   secret: "KlgH6AzYDeZeGwD288to79I3vTHT8wp7lsdfjlksdjflsdjflsdlfdslfjsdlfdjslfsdjflsjdlfsdlfjsdlfjsdlfjsdlfsdlfjslf"
 
 app:
   jwttoken:
     message:  "Jwt token message."
+
+
+eureka:
+  instance:
+    hostname: localhost
