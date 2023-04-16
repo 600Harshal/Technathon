@@ -21,7 +21,7 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long patientId;
 
-    @Column(name = "patient_email")
+    @Column(name = "patient_email", unique = true)
     private String patientEmail;
 
     @Column(name = "patient_name")
