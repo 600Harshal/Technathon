@@ -14,14 +14,13 @@ import java.util.ArrayList;
 
 //Get user details from User and pass it to Spring User model.
 @Service
-@Data
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     DoctorService doctorService;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Doctor doctor = doctorService.getDoctorByEmail(username);
-        return new User(doctor.getEmail(), doctor.getPassword(), new ArrayList<>());
+        return new User(doctor.getDoctorEmail(), doctor.getDoctorPassword(), new ArrayList<>());
     }
 
 }

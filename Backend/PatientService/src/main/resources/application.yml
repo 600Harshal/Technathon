@@ -1,7 +1,6 @@
 server:
   port: 8000
 
-
 spring:
   security:
     user:
@@ -10,7 +9,7 @@ spring:
   application:
     name: PATIENT-SERVICE
   datasource:
-    password: Sam@1910
+    password: root
     url: jdbc:postgresql://localhost:5432/vanamnesis
     username: postgres
   jpa:
@@ -25,3 +24,4 @@ spring:
     show-sql: true
   main:
     allow-circular-references: true
+
