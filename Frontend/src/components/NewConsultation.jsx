@@ -7,7 +7,7 @@ const NewConsultation = () => {
     <>
       <div className="container">
         <div className="row">
-          <div className="col">
+          <div className="col mt-5" >
             <Container>
               <div>
                 <form>
@@ -17,12 +17,21 @@ const NewConsultation = () => {
                     <Input
                       type="text"
                       placeholder="Enter here"
-                      id="firstname"
+                      id="patient name"
                     />
                   </div>
 
                   <div className="mb-3 mt-2">
                     <label className="form-label">Age</label>
+                    <Input
+                      type="text"
+                      placeholder="Enter here"
+                      id="firstname"
+                    />
+                  </div>
+
+                  <div className="mb-3 mt-2">
+                    <label className="form-label">Tell us about your symptomes</label>
                     <Input
                       type="text"
                       placeholder="Enter here"
@@ -51,7 +60,7 @@ const NewConsultation = () => {
                   </div>
 
                   <div className="buttons">
-                    <a href="/DoctorList" className="btn btn-primary">
+                    <a href="/DoctorList" className="btn btn-primary mt-3">
                       Submit
                     </a>
                   </div>
@@ -59,7 +68,7 @@ const NewConsultation = () => {
               </div>
             </Container>
           </div>
-          <div className="col">
+          <div className="col mt-5">
             <img
               src="/assets/bg1.jpg"
               className="d-block w-100"

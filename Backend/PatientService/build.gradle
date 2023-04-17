@@ -16,14 +16,16 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven{
+		url "https://repo1.maven.org/maven2/"
+	}
 }
 
 dependencies {
 
-
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-netflix-eureka-client
 	// https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
 	implementation 'org.hibernate.orm:hibernate-core:6.1.7.Final'
-
 
 	// https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api
 	implementation 'jakarta.ws.rs:jakarta.ws.rs-api:2.1.6'
@@ -42,6 +44,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.3'
 }
 

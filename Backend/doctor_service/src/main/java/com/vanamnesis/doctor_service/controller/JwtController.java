@@ -12,9 +12,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/apiDoctor")
 public class JwtController {
 
     @Autowired
@@ -26,7 +28,7 @@ public class JwtController {
     @Autowired
     private AuthenticationProvider authenticationProvider;
 
-    @PostMapping("/token")
+    @PostMapping("/doctorLogin")
     public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) {
         //Authenticate user.
         authenticationProvider.authenticate(

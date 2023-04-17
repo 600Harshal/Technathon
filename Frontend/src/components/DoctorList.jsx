@@ -25,7 +25,7 @@ const DoctorList = () => {
                 <p class="card-text">Experience: {ele.experience}</p>
                 <p class="card-text">Rating: {ele.rating}</p>
 
-                <a class="btn btn-primary " href="/" role="button">Book your slot</a>
+                <a class="btn btn-primary mb-3" href="/" role="button">Book your slot</a>
 
               </div>
             </div>

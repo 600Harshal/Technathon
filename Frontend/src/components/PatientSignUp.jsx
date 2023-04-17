@@ -114,7 +114,7 @@ export default function PatientSignUp() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h4">
-              Pateint SignUp
+              Patient SignUp
             </Typography>
             <Box
               component="form"
@@ -189,7 +189,7 @@ export default function PatientSignUp() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 style={{
-                  borderRadius: 35,
+                  borderRadius: 15,
                   backgroundColor: "#c62624",
                   padding: "14px 20px",
                   fontSize: "14px",

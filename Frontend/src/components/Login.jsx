@@ -30,16 +30,12 @@ export default function Login() {
     });
   };
 
-
   const handleFormSubmit = (event) => {
     event.preventDefault();
     console.log(loginDetail);
 
     //validation
-    if (
-      loginDetail.email.trim() === "" ||
-      loginDetail.password.trim() === ""
-    ) {
+    if (loginDetail.email.trim() === "" || loginDetail.password.trim() === "") {
       toast.error("email or Password is required");
       return;
     }
@@ -52,7 +48,7 @@ export default function Login() {
         //save the data to localstorage
         doLogin(data, () => {
           console.log("Login details are saved to localhost");
-        
+
           //redirect user to dashboard page
         });
 
@@ -64,14 +60,17 @@ export default function Login() {
       })
       .catch((error) => {
         console.log(error);
-        if (error.response.status === 400 || error.response.status === 404 || error.response.status === 401 ) {
+        if (
+          error.response.status === 400 ||
+          error.response.status === 404 ||
+          error.response.status === 401
+        ) {
           toast.error("Bad Credentials");
         } else {
           toast.error("Something went wrong");
         }
       });
   };
-
 
   // const handleSubmit = (event) => {
   //   event.preventDefault();
@@ -117,11 +116,7 @@ export default function Login() {
             <Typography component="h1" variant="h4">
               Login
             </Typography>
-            <Box
-              component="form"
-              onSubmit={handleFormSubmit}
-              sx={{ mt: 1 }}
-            >
+            <Box component="form" onSubmit={handleFormSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -132,7 +127,7 @@ export default function Login() {
                 name="email"
                 autoComplete="email"
                 value={loginDetail.email}
-                      onChange={(e) => handleChange(e, "email")}
+                onChange={(e) => handleChange(e, "email")}
                 autoFocus
                 sx={{
                   textAlign: "center",
@@ -149,27 +144,49 @@ export default function Login() {
                 id="password"
                 autoComplete="current-password"
                 value={loginDetail.password}
-                      onChange={(e) => handleChange(e, "password")}
+                onChange={(e) => handleChange(e, "password")}
                 sx={{
                   textAlign: "center",
                   border: "2px black",
                 }}
               />
-              <Button
-                type="submit"
-                fullWidth
-                color="secondary"
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                style={{
-                  borderRadius: 35,
-                  backgroundColor: "#8400be",
-                  padding: "14px 20px",
-                  fontSize: "14px",
-                }}
-              >
-                Login
-              </Button>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Button
+                    href="/Consult"
+                    type="submit"
+                    fullWidth
+                    color="secondary"
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    style={{
+                      borderRadius: 15,
+                      backgroundColor: "#8400be",
+                      padding: "14px 15px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Login as Patient
+                  </Button>
+                </Grid>
+                <Grid item xs={6}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    color="secondary"
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    style={{
+                      borderRadius: 15,
+                      backgroundColor: "#8400be",
+                      padding: "14px 15px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Login as Doctor
+                  </Button>
+                </Grid>
+              </Grid>
               <Grid container>
                 <Grid item xs>
                   <Link href="/" variant="body2">
