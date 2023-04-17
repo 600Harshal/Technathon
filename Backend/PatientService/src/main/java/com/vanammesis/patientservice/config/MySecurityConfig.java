@@ -4,6 +4,7 @@ import com.vanammesis.patientservice.constants.Constants;
 import com.vanammesis.patientservice.filters.JwtRequestFilter;
 import com.vanammesis.patientservice.services.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,6 +14,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
@@ -58,6 +62,28 @@ public class MySecurityConfig  {
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
 
         return daoAuthenticationProvider;
+    }
+
+    @Bean
+    public FilterRegistrationBean CoresFilter(){
+        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.addAllowedOriginPattern("*");
+        corsConfiguration.addAllowedHeader("Authorization");
+        corsConfiguration.addAllowedHeader("Content-Type");
+        corsConfiguration.addAllowedHeader("Accept");
+        corsConfiguration.addAllowedMethod("POST");
+        corsConfiguration.addAllowedMethod("GET");
+        corsConfiguration.addAllowedMethod("DELETE");
+        corsConfiguration.addAllowedMethod("PUT");
+        corsConfiguration.addAllowedMethod("OPTIONS");
+        corsConfiguration.setMaxAge(3600L);
+
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",corsConfiguration);
+        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(urlBasedCorsConfigurationSource));
+        return bean;
     }
 
 
