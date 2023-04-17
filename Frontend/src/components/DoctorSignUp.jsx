@@ -48,7 +48,7 @@ export default function DoctorSignUp() {
             sx={{
               my: 8,
               mx: 4,
-              mt: 40,
+              mt: 15,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -171,8 +171,8 @@ export default function DoctorSignUp() {
                 style={{
                   borderRadius: 35,
                   backgroundColor: "#1128bd",
-                  padding: "14px 32px",
-                  fontSize: "16px",
+                  padding: "14px 20px",
+                  fontSize: "14px",
                 }}
               >
                 Sign Up

@@ -32,7 +32,7 @@ export default function LandingPage() {
             variant="h3"
             sx={{
               fontFamily: "Kaushan Script",
-              fontSize: "95px",
+              fontSize: "60px",
               color: "#004499",
               ml: "30px",
               mt: "3px",
@@ -44,7 +44,7 @@ export default function LandingPage() {
             variant="h3"
             sx={{
               fontFamily: "Great Vibes",
-              fontSize: "75px",
+              fontSize: "55px",
               color: "#0072ca",
             }}
           >
@@ -58,8 +58,8 @@ export default function LandingPage() {
             style={{
               borderRadius: 20,
               backgroundColor: "#1128bd",
-              padding: "14px 32px",
-              fontSize: "16px",
+              padding: "12px 20px",
+              fontSize: "14px",
             }}
             component={Link}
             to="/signup/doctor"
@@ -72,8 +72,8 @@ export default function LandingPage() {
             style={{
               borderRadius: 20,
               backgroundColor: "#c62624",
-              padding: "14px 32px",
-              fontSize: "16px",
+              padding: "12px 20px",
+              fontSize: "14px",
             }}
             component={Link}
             to="/signup/patient"
@@ -86,8 +86,8 @@ export default function LandingPage() {
             style={{
               borderRadius: 20,
               backgroundColor: "#8400be",
-              padding: "14px 32px",
-              fontSize: "16px",
+              padding: "12px 20px",
+              fontSize: "14px",
             }}
             component={Link}
             to="/login"

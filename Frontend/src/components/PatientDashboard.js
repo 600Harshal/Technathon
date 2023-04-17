@@ -1,13 +1,8 @@
 import React from "react";
 import data from "./dataSource.json";
 import {
-  GridComponent,
-  ColumnDirective,
-  ColumnsDirective,
-  Page,
-  Inject,
-  Filter,
-  Group,
+  GridComponent
+
 } from "@syncfusion/ej2-react-grids";
 import "./Style.css";
 

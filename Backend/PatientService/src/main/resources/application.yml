@@ -9,7 +9,7 @@ spring:
   application:
     name: PATIENT-SERVICE
   datasource:
-    password: root
+    password: Sam@1910
     url: jdbc:postgresql://localhost:5432/vanamnesis
     username: postgres
   jpa:
