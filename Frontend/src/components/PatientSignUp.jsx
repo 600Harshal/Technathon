@@ -10,16 +10,16 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
+import { PSignUp } from "../components/services/patient-service";
 import { toast } from "react-toastify";
-
 
 const theme = createTheme();
 
 export default function PatientSignUp() {
   const [data, setData] = useState({
-    fullname: "",
-    email: "",
-    password: "",
+    patientName: "",
+    patientEmail: "",
+    patientPassword: "",
   });
 
   const [error, setError] = useState({
@@ -36,15 +36,6 @@ export default function PatientSignUp() {
     setData({ ...data, [property]: event.target.value });
   };
 
-  //resettong the form
-  const resetData = () => {
-    setData({
-      fullname: "",
-      email: "",
-      password: "",
-    });
-  };
-
   //submit the form
   const submitForm = (event) => {
     event.preventDefault();
@@ -57,17 +48,16 @@ export default function PatientSignUp() {
     console.log(data);
     //data validate
 
-
     //call server api for sending dada
-    PatientSignUp(data)
+    PSignUp(data)
       .then((resp) => {
         console.log(resp);
         console.log("success log");
-        toast.success("User is registered successfully");
+        toast.success("You've registered successfully");
         setData({
-          fullname: "",
-      email: "",
-      password: "",
+          patientName: "",
+          patientEmail: "",
+          patientPassword: "",
         });
       })
       .catch((error) => {
@@ -82,14 +72,14 @@ export default function PatientSignUp() {
       });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //   });
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -113,7 +103,7 @@ export default function PatientSignUp() {
             sx={{
               my: 8,
               mx: 4,
-              mt: 40,
+              mt: 15,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -124,12 +114,12 @@ export default function PatientSignUp() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h4">
-              Pateint SignUp
+              Patient SignUp
             </Typography>
             <Box
               component="form"
               noValidate
-              onSubmit={handleSubmit}
+              onSubmit={submitForm}
               sx={{ mt: 1 }}
             >
               <TextField
@@ -137,25 +127,36 @@ export default function PatientSignUp() {
                 required
                 fullWidth
                 id="name"
-                type="name"
+                type="text"
                 label="Full Name"
-                name="name"
+                name="fullname"
                 autoComplete="name"
+                onChange={(e) => handleChange(e, "patientName")}
+                value={data.patientName}
+                invalid={
+                  error.errors?.response?.data?.patientName ? true : false
+                }
                 autoFocus
                 sx={{
                   textAlign: "center",
                   border: "2px black",
                 }}
               />
+
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="email"
-                type="email"
+                type="text"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => handleChange(e, "patientEmail")}
+                value={data.patientEmail}
+                invalid={
+                  error.errors?.response?.data?.patientEmail ? true : false
+                }
                 autoFocus
                 sx={{
                   textAlign: "center",
@@ -170,6 +171,11 @@ export default function PatientSignUp() {
                 label="Password"
                 type="password"
                 id="password"
+                onChange={(e) => handleChange(e, "patientPassword")}
+                value={data.patientPassword}
+                invalid={
+                  error.errors?.response?.data?.patientPassword ? true : false
+                }
                 autoComplete="current-password"
                 sx={{
                   textAlign: "center",
@@ -183,10 +189,10 @@ export default function PatientSignUp() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 style={{
-                  borderRadius: 35,
+                  borderRadius: 15,
                   backgroundColor: "#c62624",
-                  padding: "14px 32px",
-                  fontSize: "16px",
+                  padding: "14px 20px",
+                  fontSize: "14px",
                 }}
               >
                 SignUp

@@ -19,6 +19,7 @@ public class PatientController {
 
     @PostMapping("/signUp")
     public PatientResponse createNewPatient(@RequestBody PatientResponse patientResponse){
+
         return patientService.createNewPatient(patientResponse);
     }
 
