@@ -10,7 +10,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.ws.rs.ForbiddenException;
 import java.util.Arrays;
 
 @ControllerAdvice(basePackageClasses = PatientController.class)
@@ -41,9 +40,4 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND).success(false).build();
     }
 
-    @ExceptionHandler(ForbiddenException.class)
-    public ExceptionResponse unauthorizedException(ForbiddenException exception){
-        return ExceptionResponse.builder().message(exception.getMessage())
-                .status(HttpStatus.UNAUTHORIZED).success(false).build();
-    }
 }
