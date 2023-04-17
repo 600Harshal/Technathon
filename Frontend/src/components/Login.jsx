@@ -9,18 +9,78 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { toast } from "react-toastify";
+import { loginUser } from "./services/patient-service";
+import { doLogin } from "../auth";
+import { useState } from "react";
 
 const theme = createTheme();
 
 export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+  const [loginDetail, setLoginDetail] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event, field) => {
+    let actualValue = event.target.value;
+    setLoginDetail({
+      ...loginDetail,
+      [field]: actualValue,
     });
   };
+
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(loginDetail);
+
+    //validation
+    if (
+      loginDetail.email.trim() === "" ||
+      loginDetail.password.trim() === ""
+    ) {
+      toast.error("email or Password is required");
+      return;
+    }
+
+    //submit the data to server to generate token
+    loginUser(loginDetail)
+      .then((data) => {
+        console.log(data);
+
+        //save the data to localstorage
+        doLogin(data, () => {
+          console.log("Login details are saved to localhost");
+        
+          //redirect user to dashboard page
+        });
+
+        toast.success("Login Success");
+        setLoginDetail({
+          email: "",
+          password: "",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response.status === 400 || error.response.status === 404 || error.response.status === 401 ) {
+          toast.error("Bad Credentials");
+        } else {
+          toast.error("Something went wrong");
+        }
+      });
+  };
+
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //   });
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -44,7 +104,7 @@ export default function Login() {
             sx={{
               my: 8,
               mx: 4,
-              mt: 45,
+              mt: 20,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -59,8 +119,7 @@ export default function Login() {
             </Typography>
             <Box
               component="form"
-              noValidate
-              onSubmit={handleSubmit}
+              onSubmit={handleFormSubmit}
               sx={{ mt: 1 }}
             >
               <TextField
@@ -72,6 +131,8 @@ export default function Login() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={loginDetail.email}
+                      onChange={(e) => handleChange(e, "email")}
                 autoFocus
                 sx={{
                   textAlign: "center",
@@ -87,6 +148,8 @@ export default function Login() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={loginDetail.password}
+                      onChange={(e) => handleChange(e, "password")}
                 sx={{
                   textAlign: "center",
                   border: "2px black",
@@ -101,15 +164,15 @@ export default function Login() {
                 style={{
                   borderRadius: 35,
                   backgroundColor: "#8400be",
-                  padding: "14px 32px",
-                  fontSize: "16px",
+                  padding: "14px 20px",
+                  fontSize: "14px",
                 }}
               >
                 Login
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link href="/" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
