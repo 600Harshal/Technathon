@@ -24,5 +24,5 @@ public class Doctor {
     @Column(nullable = false)
     private String doctorPassword;
     @Column(nullable = false)
-    private String gender;
+    private String doctorGender;
 }
