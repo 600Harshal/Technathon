@@ -169,7 +169,7 @@ export default function DoctorSignUp() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 style={{
-                  borderRadius: 35,
+                  borderRadius: 15,
                   backgroundColor: "#1128bd",
                   padding: "14px 20px",
                   fontSize: "14px",

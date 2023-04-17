@@ -17,7 +17,7 @@ public class DoctorController {
         return doctor;
     }
 
-    @PostMapping("/addDoctor")
+    @PostMapping("/doctorSignUp")
     public Doctor addDoctor(@RequestBody Doctor doctor){
         return doctorService.saveDoctor(doctor);
     }

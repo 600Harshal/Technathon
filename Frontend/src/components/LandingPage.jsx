@@ -56,7 +56,7 @@ export default function LandingPage() {
             variant="contained"
             sx={{ mt: 3, mb: 2, mr: 2 }}
             style={{
-              borderRadius: 20,
+              borderRadius: 15,
               backgroundColor: "#1128bd",
               padding: "12px 20px",
               fontSize: "14px",
@@ -70,7 +70,7 @@ export default function LandingPage() {
             variant="contained"
             sx={{ mt: 3, mb: 2, mr: 2 }}
             style={{
-              borderRadius: 20,
+              borderRadius: 15,
               backgroundColor: "#c62624",
               padding: "12px 20px",
               fontSize: "14px",
@@ -84,7 +84,7 @@ export default function LandingPage() {
             variant="contained"
             sx={{ mt: 3, mb: 2, mr: 2 }}
             style={{
-              borderRadius: 20,
+              borderRadius: 15,
               backgroundColor: "#8400be",
               padding: "12px 20px",
               fontSize: "14px",

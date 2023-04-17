@@ -46,5 +46,53 @@ const DoctorsData = [
     experience: " 18+ years",
     rating: "968 feedback",
   },
+
+  {
+    id: 7,
+    dname: "Dr. Vikas Kumar",
+    specialization: "MD Neurologists",
+    experience: " 15+ years",
+    rating: "908 feedback",
+  },
+
+  {
+    id: 8,
+    dname: "Dr. Khushi Sharma",
+    specialization: "MD Pediatrician",
+    experience: " 8+ years",
+    rating: "968 feedback",
+  },
+
+  {
+    id: 9,
+    dname: "Dr. Janvi Parekh",
+    specialization: "MD Pediatrician",
+    experience: " 11+ years",
+    rating: "958 feedback",
+  },
+
+  {
+    id: 10,
+    dname: "Dr. Malati Joshi",
+    specialization: "MD Neurologists",
+    experience: " 18+ years",
+    rating: "968 feedback",
+  },
+
+  {
+    id: 11,
+    dname: "Dr. Raghav Singh",
+    specialization: "MBBS General Physician",
+    experience: " 18+ years",
+    rating: "968 feedback",
+  },
+
+  {
+    id: 12,
+    dname: "Dr. Piyush Khanna",
+    specialization: "MBBS General Physicians",
+    experience: " 18+ years",
+    rating: "968 feedback",
+  },
 ];
 export default DoctorsData;
