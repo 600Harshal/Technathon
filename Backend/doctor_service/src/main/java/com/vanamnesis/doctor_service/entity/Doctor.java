@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
-@Entity
+@Entity(name="doctor")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,5 +24,5 @@ public class Doctor {
     @Column(nullable = false)
     private String doctorPassword;
     @Column(nullable = false)
-    private String gender;
+    private String doctorGender;
 }

@@ -1,6 +1,14 @@
 server:
   port: 8000
 
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
 
 spring:
   security:
@@ -10,7 +18,7 @@ spring:
   application:
     name: PATIENT-SERVICE
   datasource:
-    password: Sam@1910
+    password: root
     url: jdbc:postgresql://localhost:5432/vanamnesis
     username: postgres
   jpa:

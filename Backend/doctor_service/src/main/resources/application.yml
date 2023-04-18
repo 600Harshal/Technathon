@@ -1,11 +1,21 @@
 server:
   port: 8001
 
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
 spring:
   application:
     name: DOCTOR-SERVICE
   datasource:
-    password: Sam@1910
+    password: 12345
     url: jdbc:postgresql://localhost:5432/DoctorService
     username: postgres
   jpa:

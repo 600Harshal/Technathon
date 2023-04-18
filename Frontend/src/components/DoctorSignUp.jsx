@@ -9,22 +9,86 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import { useState } from "react";
+import { DSignUp } from "../components/services/patient-service";
+import { toast } from "react-toastify";
 const theme = createTheme();
 
 export default function DoctorSignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      name: data.get("fullname"),
-      hospitalName: data.get("hospital"),
-      license: data.get("license"),
-      email: data.get("email"),
-      password: data.get("password"),
-      gender: data.get("gender"),
-    });
+  const [info, setInfo] = useState({
+    doctorName: "",
+    hospitalName: "",
+    licenseNo: "",
+    doctorEmail: "",
+    doctorPassword: "",
+    doctorGender: "",
+  });
+
+  const [error, setError] = useState({
+    errors: {},
+    isError: false,
+  });
+
+  //handle change, info
+  const handleChange = (event, property) => {
+    // console.log("Name changed");
+    // console.log(event.target.value);
+
+    //Dynamic setting the values
+    setInfo({ ...info, [property]: event.target.value });
   };
+
+  //submit the form
+  const submitForm = (event) => {
+    event.preventDefault();
+
+    // if (error.isError) {
+    //   toast.error("Form info is invalid, correct all details then submit");
+    //   return;
+    // }
+
+    console.log(info);
+    //info validate
+
+    //call server api for sending dada
+    DSignUp(info)
+      .then((resp) => {
+        console.log(resp);
+        console.log("success log");
+        toast.success("You've registered successfully");
+        setInfo({
+          doctorName: "",
+          hospitalName: "",
+          licenseNo: "",
+          doctorEmail: "",
+          doctorPassword: "",
+          doctorGender: "",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("Error log");
+
+        //handle errors
+        setError({
+          errors: error,
+          isError: true,
+        });
+      });
+  };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const info = new Forminfo(event.currentTarget);
+  //   console.log({
+  //     name: info.get("fullname"),
+  //     hospitalName: info.get("hospital"),
+  //     license: info.get("license"),
+  //     email: info.get("email"),
+  //     password: info.get("password"),
+  //     gender: info.get("gender"),
+  //   });
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -64,7 +128,7 @@ export default function DoctorSignUp() {
             <Box
               component="form"
               noValidate
-              onSubmit={handleSubmit}
+              onSubmit={submitForm}
               sx={{ mt: 1 }}
             >
               <Grid container spacing={2}>
@@ -78,6 +142,11 @@ export default function DoctorSignUp() {
                     name="fullname"
                     inputProps={{ pattern: "[A-Za-z ]+" }}
                     autoComplete="fullname"
+                    onChange={(e) => handleChange(e, "doctorName")}
+                    value={info.doctorName}
+                    invalid={
+                      error.errors?.response?.info?.doctorName ? true : false
+                    }
                     sx={{
                       textAlign: "center",
                       border: "2px black",
@@ -93,6 +162,11 @@ export default function DoctorSignUp() {
                     label="Hospital Name"
                     name="hospital"
                     autoComplete="hospital"
+                    onChange={(e) => handleChange(e, "hospitalName")}
+                    value={info.hospitalName}
+                    invalid={
+                      error.errors?.response?.info?.hospitalName ? true : false
+                    }
                     sx={{
                       textAlign: "center",
                       border: "2px black",
@@ -108,6 +182,11 @@ export default function DoctorSignUp() {
                     label="License Number"
                     name="license"
                     autoComplete="license"
+                    onChange={(e) => handleChange(e, "licenseNo")}
+                    value={info.licenseNo}
+                    invalid={
+                      error.errors?.response?.info?.licenseNo ? true : false
+                    }
                     sx={{
                       textAlign: "center",
                       border: "2px black",
@@ -124,6 +203,11 @@ export default function DoctorSignUp() {
                     type="email"
                     name="email"
                     autoComplete="email"
+                    onChange={(e) => handleChange(e, "doctorEmail")}
+                    value={info.doctorEmail}
+                    invalid={
+                      error.errors?.response?.info?.doctorEmail ? true : false
+                    }
                     sx={{
                       textAlign: "center",
                       border: "2px black",
@@ -140,6 +224,11 @@ export default function DoctorSignUp() {
                     type="password"
                     name="password"
                     autoComplete="password"
+                    onChange={(e) => handleChange(e, "doctorPassword")}
+                    value={info.doctorPassword}
+                    invalid={
+                      error.errors?.response?.info?.doctorPassword ? true : false
+                    }
                     sx={{
                       textAlign: "center",
                       border: "2px black",
@@ -155,6 +244,11 @@ export default function DoctorSignUp() {
                     label="Gender"
                     name="gender"
                     autoComplete="gender"
+                    onChange={(e) => handleChange(e, "doctorGender")}
+                    value={info.doctorGender}
+                    invalid={
+                      error.errors?.response?.info?.doctorGender ? true : false
+                    }
                     sx={{
                       textAlign: "center",
                       border: "2px black",
