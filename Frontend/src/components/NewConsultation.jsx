@@ -5,7 +5,7 @@ import { Input } from "reactstrap";
 const NewConsultation = () => {
   return (
     <>
-      <div className="container">
+      <div className="container mrl-0">
         <div className="row">
           <div className="col mt-5" >
             <Container>

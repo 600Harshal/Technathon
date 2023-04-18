@@ -8,14 +8,18 @@ import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
 import DoctorSignUp from "./components/DoctorSignUp";
 import PatientSignUp from "./components/PatientSignUp";
+import PatientDetails from "./components/PatientDetails";
+import PatientList from "./components/PatientList";
+import PrescriptionPage from "./components/PrescriptionPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Temp from "./components/Doctor/Temp";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-      <ToastContainer position="bottom-center" />
+        <ToastContainer position="bottom-center" />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
@@ -25,6 +29,10 @@ function App() {
           <Route path="/NewConsultation" element={<NewConsultation />} />
           <Route path="/PatientDashboard" element={<PatientDashboard />} />
           <Route path="/DoctorList" element={<DoctorList />} />
+          <Route path="/PatientDetails" element={<PatientDetails />} />
+          <Route path="/PatientList" element={<PatientList />} />
+          <Route  path="/temp" element={<Temp />} />
+          <Route path="/PrescriptionPage" element={<PrescriptionPage />} />
         </Routes>
       </BrowserRouter>
     </>

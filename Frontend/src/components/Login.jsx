@@ -162,7 +162,7 @@ export default function Login() {
                     style={{
                       borderRadius: 15,
                       backgroundColor: "#8400be",
-                      padding: "14px 15px",
+                      padding: "14px 16px",
                       fontSize: "14px",
                     }}
                   >
