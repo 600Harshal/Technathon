@@ -32,4 +32,5 @@ public class Doctor {
 
     @Column(name = "doctor_gender")
     private String doctorGender;
+
 }

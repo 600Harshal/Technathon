@@ -9,8 +9,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
 @SpringBootApplication
-@EnableDiscoveryClient
 @EnableFeignClients
+@EnableDiscoveryClient
 @OpenAPIDefinition(info = @Info(title = "Patient Service", version = "1.0",
 		description = "Patient Microservice to deal with apis related to patient's data",termsOfService = "TERMS OF SERVICE"))
 public class PatientServiceApplication {
