@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -16,13 +20,17 @@ public class Prescription {
     @Id
     @Column(name = "prescription_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long prescriptionId;
 
-    private Medication medication;
+    @Column(name = "patient_doctor_id")
+    private long patientDoctorId;
 
-    private String dosage;
-
+    @Column(name = "instructions")
     private String instructions;
 
-    private String status;
+    @Column(name = "medication")
+    private List<Medication> medication;
+
+    @Column(name = "creation_date")
+    private LocalDate creationDate;
 }

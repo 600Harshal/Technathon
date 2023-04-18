@@ -10,15 +10,18 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "medication")
 public class Medication {
 
-    @Id
-    @Column(name = "medication_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String medicationName;
+    private String medicineName;
 
+    private long numberOfDays;
+
+    private String dosage;
+
+    private String timing;
+
+    private String beforeAfter;
 
 }
