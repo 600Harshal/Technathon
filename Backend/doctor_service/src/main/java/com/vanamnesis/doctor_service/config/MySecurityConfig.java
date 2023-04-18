@@ -43,7 +43,6 @@ public class MySecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable().authorizeHttpRequests()
                 .requestMatchers(PUBLIC_URLS).permitAll()
-//                .requestMatchers(HttpMethod.GET,"/api-doctor/**").permitAll()
                 .anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .exceptionHandling()

@@ -5,16 +5,27 @@ import com.vanamnesis.doctor_service.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api-doctor")
 public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
-    @GetMapping("/getDoctor/{email}")
+    @GetMapping("/getDoctorByEmail/{email}")
     public Doctor findDoctorByEmail(@PathVariable String email){
-        Doctor doctor = doctorService.getDoctorByEmail(email);
-        return doctor;
+        return doctorService.getDoctorByEmail(email);
+    }
+
+    @GetMapping("/getAllDoctors")
+    public List<Doctor> listofDoctors(){
+        return doctorService.getAllDoctors();
+    }
+
+    @GetMapping("/getDoctor/{id}")
+    public Doctor findDoctorById(@PathVariable Long id){
+        return doctorService.getDoctorById(id);
     }
 
     @PostMapping("/doctorSignUp")
