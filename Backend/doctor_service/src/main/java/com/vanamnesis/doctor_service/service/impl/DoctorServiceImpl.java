@@ -6,6 +6,8 @@ import com.vanamnesis.doctor_service.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DoctorServiceImpl implements DoctorService {
     @Autowired
@@ -18,7 +20,7 @@ public class DoctorServiceImpl implements DoctorService {
     public Doctor saveDoctor(Doctor doctor) {
         if(doctorRepository.findByDoctorEmail(doctor.getDoctorEmail()) != null)
             throw new RuntimeException("Doctor is already present");
-doctor.setDoctorPassword(passwordEncoder.encode(doctor.getDoctorPassword()));
+        doctor.setDoctorPassword(passwordEncoder.encode(doctor.getDoctorPassword()));
         return doctorRepository.save(doctor);
     }
 
@@ -28,6 +30,19 @@ doctor.setDoctorPassword(passwordEncoder.encode(doctor.getDoctorPassword()));
         if(doctor == null)
             throw new RuntimeException("Doctor is not present");
         return doctor;
+    }
+
+    @Override
+    public Doctor getDoctorById(Long id){
+        return doctorRepository.findById(id).orElseThrow(
+                () -> {
+                    throw new RuntimeException("Doctor is not present");
+                });
+    }
+
+    @Override
+    public List<Doctor> getAllDoctors(){
+        return doctorRepository.findAll();
     }
 
     @Override

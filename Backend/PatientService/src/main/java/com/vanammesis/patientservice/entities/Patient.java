@@ -21,7 +21,7 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long patientId;
 
-    @Column(name = "patient_email", unique = true)
+    @Column(name = "patient_email")
     private String patientEmail;
 
     @Column(name = "patient_name")
@@ -31,5 +31,12 @@ public class Patient {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<PatientDetails> patientDetails;
+
+    @ManyToMany
+    @JoinTable(
+            name = "patient_doctor",
+            joinColumns = @JoinColumn(name = "patient_id"),
+            inverseJoinColumns = @JoinColumn(name = "doctor_id"))
+    private List<Doctor> doctorList;
 
 }
