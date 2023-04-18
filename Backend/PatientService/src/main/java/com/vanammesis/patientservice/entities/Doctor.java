@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity(name = "doctor")
 @Getter
 @Setter
@@ -32,5 +34,8 @@ public class Doctor {
 
     @Column(name = "doctor_gender")
     private String doctorGender;
+
+    @ManyToMany(mappedBy = "doctorList", fetch = FetchType.LAZY)
+    private List<Patient> patientsList;
 
 }

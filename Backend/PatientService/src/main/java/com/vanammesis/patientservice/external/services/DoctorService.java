@@ -1,16 +1,23 @@
 package com.vanammesis.patientservice.external.services;
 
 import com.vanammesis.patientservice.entities.Doctor;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import javax.print.Doc;
 
-@FeignClient(name = "DOCTOR-SERVICE")
-public interface DoctorService {
+@Service
+public class DoctorService {
 
-    @GetMapping("/api-doctor/{email}")
-    public Doctor getDoctorByEmail(@PathVariable String email);
+    @Autowired
+    private RestTemplate restTemplate;
 
+    public Doctor getDoctorByEmail(String email){
+        return restTemplate.getForObject("localhost:8001/api-doctor/getDoctorByEmail/" + email, Doctor.class);
+    }
+
+    public Doctor getDoctorById(long doctorId){
+        return restTemplate.getForObject("localhost:8001/api-doctor/getDoctor/" + doctorId, Doctor.class);
+    }
 }
