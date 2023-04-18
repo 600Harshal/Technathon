@@ -13,7 +13,7 @@ const PatientDashboard = () => {
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link" href="/Consult">
-                 Book Appointment
+                  Book Appointment
                 </a>
               </li>
               <li class="nav-item">
@@ -26,22 +26,25 @@ const PatientDashboard = () => {
         </div>
       </nav>
 
-      <div class="jumbotron jumbotron-fluid" >
+ 
+
+      <div class="jumbotron jumbotron-fluid">
         <div class="container ">
           <h1 class="display-4">Hello, Aryan Sigh</h1>
-          <p class="lead">
-            Track your health condition now
-          </p>
+          <p class="lead">Track your health condition now</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-3">
           <div class="card ml-3" style={{ width: "22rem", height: "23rem" }}>
-            <div class="card-body"style={{ width: "22rem", height: "23rem" }}>
+            <div class="card-body" style={{ width: "22rem", height: "23rem" }}>
               <h5 class="card-title">My Details</h5>
               <p class="card-text">
-                <table class="table"className="table table-bordered border-danger">
+                <table
+                  class="table"
+                  className="table table-bordered border-danger"
+                >
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -65,7 +68,6 @@ const PatientDashboard = () => {
                       <th scope="row">Birthdate</th>
                       <td>14-08-1997</td>
                     </tr>
-                  
                   </tbody>
                 </table>
               </p>
@@ -78,10 +80,13 @@ const PatientDashboard = () => {
 
         <div class="col-sm-3">
           <div class="card ml-3" style={{ width: "22rem", height: "23rem" }}>
-            <div class="card-body"style={{ width: "22rem", height: "23rem" }}>
+            <div class="card-body" style={{ width: "22rem", height: "23rem" }}>
               <h5 class="card-title mb-2">Medical Records</h5>
               <p class="card-text">
-                <table class="table"className="table table-bordered border-danger">
+                <table
+                  class="table"
+                  className="table table-bordered border-danger"
+                >
                   <thead>
                     <tr>
                       <th scope="col">Date</th>
@@ -109,13 +114,11 @@ const PatientDashboard = () => {
                       <td>32.6</td>
                       <td>g/dL</td>
                     </tr>
-                
-                   
                   </tbody>
                 </table>
               </p>
               <a href="/" class="btn btn-danger">
-               Browse All
+                Browse All
               </a>
             </div>
           </div>
@@ -128,8 +131,6 @@ const PatientDashboard = () => {
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 };

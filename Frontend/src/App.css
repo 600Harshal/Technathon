@@ -7,3 +7,8 @@ figcaption {
 @import url('https://cdn.syncfusion.com/ej2/material.css');
 
 
+.jumbotron {
+    background-color: #FFFFFF ; /* Set your desired background color here */
+    color:  #FFCCCB; /* Set your desired text color here */
+  }
+ 

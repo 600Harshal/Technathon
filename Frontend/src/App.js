@@ -13,7 +13,7 @@ import PatientList from "./components/PatientList";
 import PrescriptionPage from "./components/PrescriptionPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Temp from "./components/Doctor/Temp";
+
 
 function App() {
   return (
@@ -31,7 +31,6 @@ function App() {
           <Route path="/DoctorList" element={<DoctorList />} />
           <Route path="/PatientDetails" element={<PatientDetails />} />
           <Route path="/PatientList" element={<PatientList />} />
-          <Route  path="/temp" element={<Temp />} />
           <Route path="/PrescriptionPage" element={<PrescriptionPage />} />
         </Routes>
       </BrowserRouter>
