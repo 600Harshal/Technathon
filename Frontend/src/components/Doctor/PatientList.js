@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import DoctorAppBar from "./DoctorAppBar";
 import "./PatientList.css";
 
 // import PatientDetails from "./PatientDetails.js";
@@ -42,7 +43,8 @@ function PatientList() {
 
   return (
     <div>
-      <h1>Paitent List</h1>
+      <DoctorAppBar />
+      <div style={{ marginTop: '50px', padding: '20px', marginRight: '15px' }}>
       <ul>
         {names.map((name, index) => (
           <li className="pListItem" key={name.id}>
@@ -51,10 +53,11 @@ function PatientList() {
             <span id="last_name">{name.last_name}</span>
             <span id="age">{name.age}</span>
             <span id="contact">{name.contact}</span>
-            <button onClick={() => handleButtonClick(name.id)}>Click me</button>
+            <button onClick={() => handleButtonClick(name.id)}>Show</button>
           </li>
         ))}
       </ul>
+      </div>
     </div>
   );
 }
