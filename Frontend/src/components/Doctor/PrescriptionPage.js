@@ -36,15 +36,16 @@ function PrescriptionPage(props) {
   };
 
   return (
-    <div>
-                <h3 className="text-center">Prescription:</h3>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <h3 style={{ textAlign: "center" }} >PRESCRIPTION:</h3>
       <form onSubmit={handleSubmit} className="prescription-form">
         {prescriptions.map((prescription, index) => (
           <div key={index} className="prescription-row">
             <label className="prescription-label">
-              Medication {index + 1}:
+            <span style={{fontWeight:"bold"}}>Medication {index + 1}:</span>
               <input
                 type="text"
+                placeholder="Medication Name"
                 value={prescription.name}
                 onChange={(event) => handleInputChange(event, index, "name")}
                 className="prescription-input"
@@ -52,9 +53,10 @@ function PrescriptionPage(props) {
             </label>
 
             <label className="prescription-label">
-              Time :
+            <span style={{fontWeight:"bold"}}>Time :</span>
               <input
                 type="text"
+                placeholder="Morning/Afternoon/night"
                 value={prescription.time}
                 onChange={(event) => handleInputChange(event, index, "time")}
                 className="prescription-input"
@@ -62,7 +64,7 @@ function PrescriptionPage(props) {
             </label>
 
             <label className="prescription-label">
-              Dosage :
+            <span style={{fontWeight:"bold"}}>Dosage :</span>
               <input
                 type="text"
                 placeholder="Medicine Dosage"
@@ -73,7 +75,7 @@ function PrescriptionPage(props) {
             </label>
 
             <label className="prescription-label">
-              Instructions :
+            <span style={{fontWeight:"bold"}}>Instructions :</span>
               <input
                 type="text"
                 placeholder="Before/After Meal"
@@ -95,10 +97,9 @@ function PrescriptionPage(props) {
         </button>
         <button type="submit">Submit</button>
       </form>
-             {" "}
+    {" "}
     </div>
   );
 }
 
 export default PrescriptionPage;
-	
